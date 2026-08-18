@@ -1,0 +1,21 @@
+# ビルドで作られるもの（配布用のzip/リリースだけを別途配布する）
+たてモニ.app
+*.app
+
+# 動作ログ
+たてモニ動作ログ.txt
+*.log
+
+# 個人用の資料・バックアップ（公開しない）
+資料/
+過去版/
+
+# macOS
+.DS_Store
+
+# Xcode / Swift の一時ファイル（念のため）
+*.xcodeproj/
+.build/
+DerivedData/
+*.swiftpm/
+.swiftpm/
