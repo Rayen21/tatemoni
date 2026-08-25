@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>たてモニ インストールガイド｜iPadを縦のサブモニターにする無料Macアプリ（たてもに・縦モニ・縦もに・tatemoni）</title>
+<meta name="description" content="たてモニ（縦モニ・たてもに・縦もに・tatemoni）は、Sidecarで接続したiPadを縦のサブモニターにする無料のMacアプリです。プログラムの知識がなくても入れられるように、大きな文字でインストール方法を説明します。">
+<meta name="keywords" content="たてモニ,たてもに,縦モニ,縦もに,tatemoni,iPad,縦,サブモニター,サブディスプレイ,Mac,Sidecar,無料,アプリ,ダウンロード,インストール">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap">
+<style>
+:root{
+  --bg:#FFFFFF; --panel:#F5F6F8; --text:#15181D; --muted:#4A5159;
+  --accent:#1668C7; --accent-ink:#FFFFFF; --line:#D8DCE2;
+  --warn-bg:#FFF4E0; --warn-line:#E08A00;
+  --ok-bg:#E9F6EC; --ok-line:#2E7D34;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14171B; --panel:#1E232A; --text:#F2F4F7; --muted:#BFC7D1;
+    --accent:#6FB0F5; --accent-ink:#0E1116; --line:#39424D;
+    --warn-bg:#3A2E14; --warn-line:#E0A03A;
+    --ok-bg:#16301C; --ok-line:#67C177;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#14171B; --panel:#1E232A; --text:#F2F4F7; --muted:#BFC7D1;
+  --accent:#6FB0F5; --accent-ink:#0E1116; --line:#39424D;
+  --warn-bg:#3A2E14; --warn-line:#E0A03A;
+  --ok-bg:#16301C; --ok-line:#67C177;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Noto Sans JP','Hiragino Sans','Yu Gothic',sans-serif;
+  background:var(--bg); color:var(--text);
+  font-size:20px; line-height:1.9;
+  padding:24px 16px 80px;
+}
+.wrap{max-width:760px;margin:0 auto}
+header{text-align:center;padding:32px 0 8px;border-bottom:3px solid var(--line);margin-bottom:40px}
+h1{font-size:38px;line-height:1.35;font-weight:700;margin-bottom:16px;text-wrap:balance}
+.lead{font-size:22px;color:var(--muted);margin-bottom:8px}
+.alias{font-size:16px;color:var(--muted);margin-top:12px}
+h2{font-size:28px;font-weight:700;margin:48px 0 16px;line-height:1.4}
+p{margin-bottom:16px}
+.big-btn{
+  display:block;background:var(--accent);color:var(--accent-ink);
+  text-align:center;text-decoration:none;font-weight:700;font-size:22px;
+  padding:22px 24px;border-radius:12px;margin:24px 0;
+}
+.big-btn:hover{opacity:.88}
+.step{background:var(--panel);border-left:10px solid var(--accent);border-radius:12px;padding:24px 24px 8px;margin-bottom:28px}
+.step-no{display:inline-block;background:var(--accent);color:var(--accent-ink);font-weight:700;font-size:20px;width:44px;height:44px;line-height:44px;text-align:center;border-radius:50%;margin-bottom:12px}
+.step h3{font-size:25px;font-weight:700;margin-bottom:12px;line-height:1.45}
+.file{font-family:ui-monospace,Menlo,Consolas,monospace;background:var(--line);color:var(--text);padding:3px 8px;border-radius:6px;font-size:18px;word-break:break-all}
+.box{border-radius:12px;padding:24px;margin:32px 0}
+.warn{background:var(--warn-bg);border-left:10px solid var(--warn-line)}
+.ok{background:var(--ok-bg);border-left:10px solid var(--ok-line)}
+.box h3{font-size:24px;font-weight:700;margin-bottom:12px;line-height:1.45}
+ul,ol{margin:0 0 16px 28px}
+li{margin-bottom:10px}
+a{color:var(--accent)}
+footer{margin-top:64px;padding-top:28px;border-top:3px solid var(--line);text-align:center;color:var(--muted);font-size:17px}
+footer a{display:inline-block;margin:6px 10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>たてモニ<br>インストールガイド</h1>
+  <p class="lead">iPadを「縦」のサブモニターにする<br>Mac用の無料アプリです</p>
+  <p class="alias">たてモニ／たてもに／縦モニ／縦もに／tatemoni</p>
+</header>
+
+<p>このページのとおりに進めれば、パソコンにくわしくない方でもインストールできます。<strong>全部で4ステップ、5分ほど</strong>です。</p>
+
+<div class="box warn">
+  <h3>⚠️ はじめに読んでください</h3>
+  <p>「たてモニ」は、個人が<strong>無料で公開している安全なアプリ</strong>です。<strong>ウイルスではありません。</strong></p>
+  <p>ただし、Macで初めて開くときに<strong>「開発元を確認できません」という警告が出ます。</strong>これは個人が作った無料アプリでは<strong>ごく普通のこと</strong>で、こわれているわけでも、危険なわけでもありません。</p>
+  <p style="margin-bottom:0">避け方は、下の<strong>ステップ4</strong>で説明します。あわてて削除しないでください。</p>
+</div>
+
+<h2>ステップ1　ダウンロードする</h2>
+
+<div class="step">
+  <div class="step-no">1</div>
+  <h3>下の青いボタンを押します</h3>
+  <a class="big-btn" href="https://github.com/goochroso-cmd/tatemoni/releases/latest">📥 ダウンロードページを開く</a>
+  <p>GitHub（ギットハブ）というサイトが開きます。世界中のプログラムが置いてある、Microsoft が運営している大きなサイトです。あやしいサイトではありません。</p>
+  <p>ページの中ほどに <strong>「Assets」（アセッツ）</strong> という文字があります。その下に並んでいるファイルの中から、</p>
+  <p><span class="file">tatemoni.app.zip</span></p>
+  <p>を押すと、ダウンロードが始まります。</p>
+</div>
+
+<h2>ステップ2　ファイルを開く</h2>
+
+<div class="step">
+  <div class="step-no">2</div>
+  <h3>ダウンロードしたZIPをダブルクリック</h3>
+  <p>画面の右上、または Dock の「ダウンロード」フォルダに <span class="file">tatemoni.app.zip</span> が入っています。</p>
+  <p>それを<strong>ダブルクリック</strong>すると、自動でひらいて</p>
+  <p><span class="file">たてモニ.app</span></p>
+  <p>というアプリが出てきます。</p>
+</div>
+
+<h2>ステップ3　アプリケーションに入れる</h2>
+
+<div class="step">
+  <div class="step-no">3</div>
+  <h3>「アプリケーション」フォルダへ引っぱる</h3>
+  <ol>
+    <li>Finder（ファインダー＝ニコちゃんマークのアイコン）を開きます</li>
+    <li>左側の一覧から <strong>「アプリケーション」</strong> をクリック</li>
+    <li><span class="file">たてモニ.app</span> を、そこへ<strong>ドラッグして落とします</strong></li>
+  </ol>
+  <p>これで、Macの中に正式に入りました。</p>
+</div>
+
+<h2>ステップ4　最初の1回だけ、特別な開き方をする</h2>
+
+<div class="step">
+  <div class="step-no">4</div>
+  <h3>ふつうにダブルクリックすると警告が出ます</h3>
+  <p><strong>1回目だけ</strong>、次のやり方で開いてください。</p>
+  <ol>
+    <li>「アプリケーション」フォルダの <span class="file">たてモニ.app</span> を<strong>右クリック</strong>（マウスの右ボタン。ボタンが1つのマウスやトラックパッドなら、<strong>Controlキーを押しながらクリック</strong>）</li>
+    <li>出てきたメニューから <strong>「開く」</strong> を選びます</li>
+    <li>「本当に開きますか？」と聞かれるので、もう一度 <strong>「開く」</strong> を押します</li>
+  </ol>
+  <p>これで起動します。<strong>2回目からは、ふつうにダブルクリックで開けます。</strong></p>
+  <p>もしそれでも開けないときは、<strong>アップルメニュー → システム設定 → プライバシーとセキュリティ</strong> を開いて、いちばん下のほうに出ている <strong>「このまま開く」</strong> ボタンを押してください。</p>
+</div>
+<div class="box ok">
+  <h3>✅ ここまでで、インストールは完了です</h3>
+  <p>画面いちばん上のメニューバー（時計が出ている帯）に、たてモニのアイコンが出ていれば成功です。</p>
+</div>
+
+<h2>使い方</h2>
+
+<div class="step">
+  <div class="step-no">▶</div>
+  <h3>iPadを縦にする</h3>
+  <ol>
+    <li>いつもどおり、<strong>iPadとMacをSidecarでつなぎます</strong>（横向きのままで大丈夫です）</li>
+    <li>メニューバーの<strong>たてモニのアイコンをクリック</strong></li>
+    <li><strong>「縦・ホームボタンが上」</strong> か <strong>「縦・ホームボタンが下」</strong> を選びます<br>（iPadをどちら向きに置くかで選んでください）</li>
+    <li>初回だけ「画面収録を許可しますか」と聞かれます。<strong>許可してください</strong>（画面を映すために必要です）</li>
+  </ol>
+  <p>これでiPadが縦のサブモニターになります。</p>
+  <p><strong>元に戻すとき</strong>は、同じメニューから「横（そのまま）」を選びます。</p>
+</div>
+
+<h2>よくある質問</h2>
+
+<div class="step">
+  <h3>Q. 本当に無料ですか？</h3>
+  <p>完全に無料です。MITライセンスというきまりで公開していて、中身のプログラムも全部見られます。お金は一切かかりません。</p>
+</div>
+
+<div class="step">
+  <h3>Q. ウイルスではありませんか？</h3>
+  <p>ウイルスではありません。警告が出るのは、作者がAppleに年間約99ドルを払う「公証」という手続きをしていないからです。無料で配っている個人のアプリでは、よくあることです。中身のプログラムはすべて公開されているので、くわしい方なら確認できます。</p>
+</div>
+
+<div class="step">
+  <h3>Q. iPadの画面を指で触っても反応しません</h3>
+  <p>仕組み上の制限です。たてモニは「回転させた映像を貼りつけて見せている」ので、タッチには反応しません。マウスやトラックパッドは今までどおり使えます。</p>
+</div>
+
+<div class="step">
+  <h3>Q. Windows / iPhone / Android 版はありますか？</h3>
+  <p>Mac版のみです。申し訳ありません。</p>
+</div>
+
+<div class="step">
+  <h3>Q. 動く条件は？</h3>
+  <ul>
+    <li>macOS 12.3 以降</li>
+    <li>MacとiPadでSidecarが使えること</li>
+  </ul>
+  <p>Sidecarが使えていれば、たいてい使えます。</p>
+</div>
+
+<h2>うまくいかないとき・質問</h2>
+
+<p>うまく動かない、こうしてほしい、という場合は、GitHubの「Issues」から知らせてください。Macの機種・macOSのバージョン・iPadの機種を書いていただけると助かります。</p>
+
+<a class="big-btn" href="https://github.com/goochroso-cmd/tatemoni/issues">🛠 不具合・要望を伝える（GitHub Issues）</a>
+
+<footer>
+  <p><strong>たてモニ</strong>（たてもに・縦モニ・縦もに・tatemoni）<br>iPadを縦のサブモニターにする無料Macアプリ</p>
+  <p>
+    <a href="https://github.com/goochroso-cmd/tatemoni">GitHub</a>
+    <a href="https://note.com/quiet_rose6805/n/n8ccb773bb823">note の記事</a>
+    <a href="https://x.com/Humux3">X（開発者）</a>
+  </p>
+  <p style="margin-top:16px">MIT License ／ 個人開発</p>
+</footer>
+
+</div>
+</body>
+</html>
