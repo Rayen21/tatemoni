@@ -1,15 +1,46 @@
 <!DOCTYPE html>
-
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>たてモニ インストールガイド｜iPadを縦のサブモニターにする無料Macアプリ（たてもに・縦モニ・縦もに・tatemoni）</title>
-<meta name="description" content="たてモニ（縦モニ・たてもに・縦もに・tatemoni）は、Sidecarで接続したiPadを縦のサブモニターにする無料のMacアプリです。プログラムの知識がなくても入れられるように、大きな文字でインストール方法を説明します。">
-<meta name="keywords" content="たてモニ,たてもに,縦モニ,縦もに,tatemoni,iPad,縦,サブモニター,サブディスプレイ,Mac,Sidecar,無料,アプリ,ダウンロード,インストール">
+<title>たてモニ｜Sidecarで縦にならないiPadを縦のサブモニターにする無料Macアプリ</title>
+<meta name="description" content="Sidecarでつないだ iPad が横向きのままで縦にならない——その悩みを解決する無料の Mac アプリ「たてモニ」(たてもに・タテモニ・縦モニ・縦もに・tatemoni)。iPad を縦置きのサブモニター／サブディスプレイとして使えます。ダウンロードとインストール方法を大きな文字でやさしく解説。">
+<meta name="keywords" content="たてモニ,たてもに,タテモニ,縦モニ,縦もに,tatemoni,Sidecar 縦,サイドカー 縦,iPad 縦,iPad 縦向き,iPad サブモニター,iPad サブディスプレイ,iPad 縦置き,Mac 外部ディスプレイ,画面 回転,無料アプリ,macOS,デュアルディスプレイ">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="author" content="ふむふむ (@Humux3)">
+<link rel="canonical" href="https://goochroso-cmd.github.io/tatemoni/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:site_name" content="たてモニ">
+<meta property="og:url" content="https://goochroso-cmd.github.io/tatemoni/">
+<meta property="og:title" content="たてモニ｜Sidecarで縦にならないiPadを縦のサブモニターにする無料Macアプリ">
+<meta property="og:description" content="Sidecarのi Padが横向きのままで縦にならない問題を解決する無料Macアプリ。インストール方法を大きな文字でやさしく解説します。">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Humux3">
+<meta name="twitter:title" content="たてモニ｜iPadを縦のサブモニターにする無料Macアプリ">
+<meta name="twitter:description" content="Sidecarのi Padが縦にならない問題を解決。インストール方法をやさしく解説。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "たてモニ",
+  "alternateName": ["たてもに", "タテモニ", "縦モニ", "縦もに", "tatemoni"],
+  "description": "Sidecarで接続したiPadを、縦長のサブモニターとして使えるようにするMac用の無料アプリ。",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "macOS 12.3 以降",
+  "url": "https://goochroso-cmd.github.io/tatemoni/",
+  "downloadUrl": "https://github.com/goochroso-cmd/tatemoni/releases/latest",
+  "softwareVersion": "1.1",
+  "inLanguage": "ja",
+  "license": "https://opensource.org/licenses/MIT",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" },
+  "author": { "@type": "Person", "name": "ふむふむ", "url": "https://x.com/Humux3" }
+}
+</script>
 <style>
 :root{
   --bg:#FFFFFF; --panel:#F5F6F8; --text:#15181D; --muted:#4A5159;
@@ -64,6 +95,7 @@ li{margin-bottom:10px}
 a{color:var(--accent)}
 footer{margin-top:64px;padding-top:28px;border-top:3px solid var(--line);text-align:center;color:var(--muted);font-size:17px}
 footer a{display:inline-block;margin:6px 10px}
+.terms{font-size:17px;color:var(--muted);line-height:2}
 </style>
 </head>
 <body>
@@ -71,9 +103,22 @@ footer a{display:inline-block;margin:6px 10px}
 
 <header>
   <h1>たてモニ<br>インストールガイド</h1>
-  <p class="lead">iPadを「縦」のサブモニターにする<br>Mac用の無料アプリです</p>
-  <p class="alias">たてモニ／たてもに／縦モニ／縦もに／tatemoni</p>
+  <p class="lead">Sidecarでつないだ iPad を<br>「縦」のサブモニターにする無料Macアプリ</p>
+  <p class="alias">たてモニ／たてもに／タテモニ／縦モニ／縦もに／tatemoni</p>
 </header>
+
+<h2>こんなことで困っていませんか</h2>
+
+<ul>
+  <li>Sidecar でつないだ <strong>iPad が横向きのままで、縦にならない</strong></li>
+  <li>iPad を<strong>縦置きのサブモニター（サブディスプレイ）</strong>として使いたい</li>
+  <li>Mac の画面を <strong>iPad に縦向きで表示</strong>したい</li>
+  <li>Sidecar の<strong>画面を回転</strong>させる方法を探している</li>
+  <li>SNSのタイムラインやチャット、縦書きの資料を<strong>縦長の画面</strong>で読みたい</li>
+  <li>Mac用の<strong>無料のサブディスプレイアプリ</strong>を探している</li>
+</ul>
+
+<p>「たてモニ」は、そのための Mac 用アプリです。<strong>完全無料</strong>で、メニューバーから「縦」を選ぶだけで使えます。</p>
 
 <p>このページのとおりに進めれば、パソコンにくわしくない方でもインストールできます。<strong>全部で4ステップ、5分ほど</strong>です。</p>
 
@@ -134,16 +179,16 @@ footer a{display:inline-block;margin:6px 10px}
   <p>これで起動します。<strong>2回目からは、ふつうにダブルクリックで開けます。</strong></p>
   <p>もしそれでも開けないときは、<strong>アップルメニュー → システム設定 → プライバシーとセキュリティ</strong> を開いて、いちばん下のほうに出ている <strong>「このまま開く」</strong> ボタンを押してください。</p>
 </div>
+
 <div class="box ok">
   <h3>✅ ここまでで、インストールは完了です</h3>
   <p>画面いちばん上のメニューバー（時計が出ている帯）に、たてモニのアイコンが出ていれば成功です。</p>
 </div>
-
-<h2>使い方</h2>
+<h2>使い方　iPadを縦にする</h2>
 
 <div class="step">
   <div class="step-no">▶</div>
-  <h3>iPadを縦にする</h3>
+  <h3>メニューバーから選ぶだけ</h3>
   <ol>
     <li>いつもどおり、<strong>iPadとMacをSidecarでつなぎます</strong>（横向きのままで大丈夫です）</li>
     <li>メニューバーの<strong>たてモニのアイコンをクリック</strong></li>
@@ -152,6 +197,7 @@ footer a{display:inline-block;margin:6px 10px}
   </ol>
   <p>これでiPadが縦のサブモニターになります。</p>
   <p><strong>元に戻すとき</strong>は、同じメニューから「横（そのまま）」を選びます。</p>
+  <p><strong>マウスの入り口</strong>は、メニューの「マウスは iPadの ◯ から入る」で上下左右から選べます（初期値は「左から」）。</p>
 </div>
 
 <h2>よくある質問</h2>
@@ -181,8 +227,14 @@ footer a{display:inline-block;margin:6px 10px}
   <ul>
     <li>macOS 12.3 以降</li>
     <li>MacとiPadでSidecarが使えること</li>
+    <li>Apple Silicon Mac / Intel Mac 両対応</li>
   </ul>
-  <p>Sidecarが使えていれば、たいてい使えます。</p>
+  <p>Sidecarが使えていれば、たいてい使えます。iPadOS 26.6（iPad mini 第6世代）で動作確認しています。</p>
+</div>
+
+<div class="step">
+  <h3>Q. Sidecarの画面が縦にならないのは、Appleの不具合ですか？</h3>
+  <p>不具合ではなく、Sidecarにもともと画面を縦にする機能がないためです。たてモニは、縦長の仮想ディスプレイを作り、その映像を90度回してiPadに重ねることで縦表示を実現しています。</p>
 </div>
 
 <h2>うまくいかないとき・質問</h2>
@@ -191,16 +243,61 @@ footer a{display:inline-block;margin:6px 10px}
 
 <a class="big-btn" href="https://github.com/goochroso-cmd/tatemoni/issues">🛠 不具合・要望を伝える（GitHub Issues）</a>
 
+<h2>このアプリの呼び方・関連する言葉</h2>
+
+<p class="terms">
+アプリ名の表記ゆれ：たてモニ／たてもに／タテモニ／縦モニ／縦もに／tatemoni<br>
+関連する言葉：Sidecar 縦／サイドカー 縦／Sidecar 縦向き／Sidecar 画面 回転／iPad 縦 サブモニター／iPad 縦 サブディスプレイ／iPad 縦置き モニター／iPad 縦画面 Mac／Mac 外部ディスプレイ iPad 縦／iPad デュアルディスプレイ 縦／Mac サブディスプレイ 無料 アプリ／ipad vertical monitor mac／sidecar ipad portrait
+</p>
 <footer>
-  <p><strong>たてモニ</strong>（たてもに・縦モニ・縦もに・tatemoni）<br>iPadを縦のサブモニターにする無料Macアプリ</p>
+  <p><strong>たてモニ</strong>（たてもに・タテモニ・縦モニ・縦もに・tatemoni）<br>Sidecarでつないだ iPad を縦のサブモニターにする無料Macアプリ</p>
   <p>
     <a href="https://github.com/goochroso-cmd/tatemoni">GitHub</a>
     <a href="https://note.com/quiet_rose6805/n/n8ccb773bb823">note の記事</a>
     <a href="https://x.com/Humux3">X（開発者）</a>
   </p>
-  <p style="margin-top:16px">MIT License ／ 個人開発</p>
+  <p style="margin-top:16px">MIT License ／ 個人開発 ／ 完全無料</p>
 </footer>
 
 </div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "たてモニは本当に無料ですか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "完全に無料です。MITライセンスで公開しており、ソースコードもすべて公開されています。料金は一切かかりません。" }
+    },
+    {
+      "@type": "Question",
+      "name": "起動時に「開発元を確認できません」と出ますが、ウイルスですか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "ウイルスではありません。作者がAppleの公証（年間約99ドル）を受けていないために出る警告で、個人が無料配布するアプリではよくあることです。アプリを右クリックして「開く」を選べば起動できます。" }
+    },
+    {
+      "@type": "Question",
+      "name": "Sidecarでつないだ iPad が縦にならないのはなぜですか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sidecarには画面を縦向きにする機能がもともとありません。たてモニは縦長の仮想ディスプレイを作り、その映像を90度回転させてiPadに重ねることで縦表示を実現しています。" }
+    },
+    {
+      "@type": "Question",
+      "name": "iPadの画面を指で触っても反応しません",
+      "acceptedAnswer": { "@type": "Answer", "text": "仕組み上の制限です。回転させた映像を重ねて表示しているため、タッチ操作には反応しません。マウスやトラックパッドは通常どおり使えます。" }
+    },
+    {
+      "@type": "Question",
+      "name": "Windows / iPhone / Android 版はありますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "Mac版のみです。Windows、iPhone、Android向けの提供予定はありません。" }
+    },
+    {
+      "@type": "Question",
+      "name": "動作環境を教えてください",
+      "acceptedAnswer": { "@type": "Answer", "text": "macOS 12.3 以降。Apple Silicon Mac と Intel Mac の両方に対応しています。MacとiPadでSidecarが使える環境であれば利用できます。" }
+    }
+  ]
+}
+</script>
 </body>
 </html>
