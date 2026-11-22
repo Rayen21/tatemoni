@@ -1,5 +1,28 @@
 # たてモニ（たてもに・タテモニ・縦モニ・縦もに・tatemoni）
 
+## 简体中文说明
+
+Tatemoni 是一款免费的 macOS 菜单栏应用，可以把通过「随航」（Sidecar）连接的 iPad 变成 **Mac 的竖屏扩展显示器**。你可以把 Mac 上的文档、网页或聊天窗口拖到 iPad 上。
+
+### 软件功能
+
+- **竖屏显示**：根据 iPad 的摆放方向，选择「Home 键朝上」或「Home 键朝下」。
+- **鼠标跨屏**：可设置鼠标从 iPad 的上、下、左、右哪一侧进入。
+- **恢复横屏**：选择「横屏（普通随航）」即可切回原来的随航桌面。
+- **简体中文界面**：本仓库提供中文菜单、权限提示、错误提示和使用说明。
+
+### 快速上手
+
+1. 横放 iPad，在控制中心锁定屏幕方向，再通过 Mac 的「随航」连接 iPad。
+2. 把 iPad 竖起来，打开 Mac 菜单栏里的 Tatemoni，选择对应的竖屏方向。
+3. 首次使用时，按提示授权屏幕录制，并退出、重新打开 Tatemoni。然后用 Mac 的鼠标或触控板把窗口拖到竖屏。
+
+中文版构建包要求 macOS 13 或更新版本，支持 Apple Silicon 和 Intel。Mac 与 iPad 需要能够使用随航。竖屏时，macOS 的「显示器」设置会多一块虚拟屏，iPad 的触屏和 Apple Pencil 无法用来操作 Mac 窗口。
+
+[在 GitHub Actions 下载简体中文构建包](https://github.com/Rayen21/tatemoni/actions/workflows/build-zh.yml)（登录 GitHub 后打开成功的构建，在 Artifacts 中下载 `Tatemoni-zh-CN`。）
+
+---
+
 ### ── Sidecarでつないだ iPad を「縦」のサブモニターにする Mac用の無料アプリ
 
 Sidecarで接続したiPadは、いつも横向きの画面にしかなりません。
