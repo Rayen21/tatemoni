@@ -1,0 +1,22 @@
+name: Build Tatemoni zh-CN
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    tags: ['v*-zh.*']
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash scripts/build-zh.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Tatemoni-zh-CN
+          path: dist/Tatemoni-zh-CN.zip
+          if-no-files-found: error

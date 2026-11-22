@@ -38,7 +38,7 @@ import Darwin
 // ★2026-08-18: 【A】【H】【B】【C】【D】の修正とuniversal対応を
 //   まとめて反映し、v1.0 → v1.1 に上げた。ユーザーに見える変更を
 //   したら、その都度ここを必ず上げること（1回上げて終わりにしない）。
-let APP_VERSION = "v1.1"
+let APP_VERSION = "v1.1 中文版"
 let MENU_FONT_SIZE: CGFloat = 15.0     // 老眼配慮。小さくしないこと。
 
 // ===== 設定の保存先（UserDefaults） =====
@@ -204,12 +204,12 @@ final class Controller: NSObject, NSApplicationDelegate {
                 // 動いているときだけ はっきり見える。止まっているときは薄い。
                 button.appearsDisabled = (nowMuki == MUKI_YOKO)
             } else {
-                button.title = (nowMuki == MUKI_YOKO) ? "たて" : "たて▶"
+                button.title = (nowMuki == MUKI_YOKO) ? "竖屏" : "竖屏▶"
             }
         }
         statusItem.button?.toolTip =
-            (nowMuki == MUKI_YOKO) ? "たてモニ：停止中（素のSidecar）"
-                                   : "たてモニ：iPadに縦画面を出しています"
+            (nowMuki == MUKI_YOKO) ? "Tatemoni：普通横屏随航"
+                                   : "Tatemoni：iPad 正在显示竖屏"
 
         let menu = NSMenu()
         menu.autoenablesItems = false
@@ -217,50 +217,50 @@ final class Controller: NSObject, NSApplicationDelegate {
         // ★v4.3★ 許可が無いときだけ 出る行。押すと案内窓を開く。
         //  ふだんは出ない。だから邪魔にならない。
         if !CGPreflightScreenCaptureAccess() {
-            menu.addItem(plain("画面収録の許可がありません（押すと案内）",
+            menu.addItem(plain("需要屏幕录制权限（点此查看）",
                                #selector(showPermissionGuide)))
             menu.addItem(.separator())
         }
 
         // ★v4.3: 「終了」を一番上に置いた（親分の指示 2026-08-13）
-        menu.addItem(plain("たてモニを終了", #selector(quitApp)))
+        menu.addItem(plain("退出 Tatemoni", #selector(quitApp)))
         menu.addItem(.separator())
 
         // ★v4.2: アプリ名とバージョンの行は消した（親分の指示 2026-08-13）
         // ★v4.2: 並び順は 横 → 上 → 下（親分の指示）
-        menu.addItem(radio("横（そのまま）",
+        menu.addItem(radio("横屏（普通随航）",
                            on: nowMuki == MUKI_YOKO,
                            action: #selector(chooseYoko)))
         // ★v4.3★ 上下が実機と反対だった（親分が実機で確認・2026-08-13）
         //  旧: 上=ccw / 下=cw   →   新: 上=cw / 下=ccw
         //  ★理屈ではなく 実機で見た結果で決めた。ここは触るな。★
-        menu.addItem(radio("縦・ホームボタンが 上",
+        menu.addItem(radio("竖屏 · Home 键朝上",
                            on: nowMuki == MUKI_CW,
                            action: #selector(chooseCW)))
-        menu.addItem(radio("縦・ホームボタンが 下",
+        menu.addItem(radio("竖屏 · Home 键朝下",
                            on: nowMuki == MUKI_CCW,
                            action: #selector(chooseCCW)))
 
         menu.addItem(.separator())
 
         // ---- マウスの入り口（★iPadの辺 で言う。親分の指摘 2026-08-13）----
-        let mouseItem = plain("マウスは iPadの \(iriguchiName(iriguchi)) から入る", nil)
+        let mouseItem = plain("鼠标从 iPad 的\(iriguchiName(iriguchi))侧进入", nil)
         let mouseMenu = NSMenu()
         mouseMenu.autoenablesItems = false
         for key in iriguchiKeysInOrder() {
-            let it = radio("iPadの \(iriguchiName(key)) から",
+            let it = radio("从\(iriguchiName(key))侧进入",
                            on: iriguchi == key,
                            action: #selector(chooseIriguchi(_:)))
             it.representedObject = key
             mouseMenu.addItem(it)
         }
         mouseMenu.addItem(.separator())
-        mouseMenu.addItem(header("思った辺と違ったら 別のを選ぶ"))
+        mouseMenu.addItem(header("按 iPad 的实际摆放位置选择"))
         mouseItem.submenu = mouseMenu
         menu.addItem(mouseItem)
 
         menu.addItem(.separator())
-        menu.addItem(plain("使い方", #selector(showGuide(_:))))
+        menu.addItem(plain("使用说明", #selector(showGuide(_:))))
 
         statusItem.menu = menu
     }
@@ -392,10 +392,9 @@ final class Controller: NSObject, NSApplicationDelegate {
         refresh()
 
         guard FileManager.default.fileExists(atPath: daemonURL.path) else {
-            tell("中身（kururin_pa_daemon）が見つかりません",
-                 "アプリの隣にあるはずのファイルがありません。\n\n"
-                 + "探した場所：\n\(daemonURL.path)\n\n"
-                 + "「6_アプリを作る.command」をもう一度ダブルクリックしてください。")
+            tell("找不到随航辅助程序",
+                 "应用缺少必要文件。请重新解压完整的应用。\n\n"
+                 + "查找位置：\n\(daemonURL.path)")
             return
         }
 
@@ -421,7 +420,7 @@ final class Controller: NSObject, NSApplicationDelegate {
         do {
             try p.run()
         } catch {
-            tell("起動できませんでした", "\(error.localizedDescription)")
+            tell("无法启动", "\(error.localizedDescription)")
             return
         }
 
@@ -493,23 +492,15 @@ final class Controller: NSObject, NSApplicationDelegate {
             //  ★v4.3★ 中身が固まったので 命綱が殺した。
             break
         case 2:
-            tell("iPad が見つかりません",
-                 "先に iPad を Sidecar でつないでください。\n\n"
-                 + "つなぎ方：\n"
-                 + "1. iPad を 横向き に持つ\n"
-                 + "2. 右上から下スワイプ → 回転ロックを オン\n"
-                 + "3. その状態で Sidecar 接続\n"
-                 + "4. つながってから この操作をやり直す")
+            tell("找不到 iPad",
+                 "请先横放 iPad，从右上角下滑打开控制中心，锁定屏幕方向。"
+                 + "然后用随航连接 iPad，再试一次。")
         case 1:
-            tell("縦の画面を作れませんでした",
-                 "iPad をつなぎ直してから、もう一度お試しください。")
+            tell("无法创建竖屏", "请重新连接 iPad 后再试。")
         case 5:
-            tell("うまく置けなかったのでやめました",
-                 "画面には何も出していません。\n"
-                 + "iPad をつなぎ直してから、もう一度お試しください。")
+            tell("无法显示竖屏画面", "请重新连接 iPad 后再试。")
         default:
-            tell("止まりました（コード \(code)）",
-                 "iPad をつなぎ直してから、もう一度お試しください。")
+            tell("竖屏已停止（代码 \(code)）", "请重新连接 iPad 后再试。")
         }
     }
 
@@ -527,7 +518,7 @@ final class Controller: NSObject, NSApplicationDelegate {
         tf.setFrameSize(NSSize(width: 420, height: 10))
         tf.sizeToFit()
         a.accessoryView = tf
-        a.addButton(withTitle: "わかった")
+        a.addButton(withTitle: "确定")
         NSApp.activate(ignoringOtherApps: true)
         a.runModal()
     }
@@ -567,22 +558,20 @@ final class Controller: NSObject, NSApplicationDelegate {
 
     func askOpenSettings() {
         let a = NSAlert()
-        a.messageText = "「画面収録」の許可が必要です"
+        a.messageText = "需要屏幕录制权限"
         let body =
-            "たてモニ は、作った縦の画面を撮って iPad に貼りつけます。\n"
-            + "そのため「画面収録」の許可が要ります。\n\n"
-            + "1. 下の「システム設定を開く」を押す\n"
-            + "2. 一覧の「たてモニ」を オン にする\n"
-            + "3. たてモニ を いったん終了して、もう一度開く\n\n"
-            + "※許可を入れた直後は、一度アプリを開き直さないと有効になりません。"
+            "Tatemoni 需要录制竖屏桌面，才能把画面显示到 iPad 上。\n\n"
+            + "1. 点击「打开系统设置」。\n"
+            + "2. 在列表中开启 Tatemoni 的权限。\n"
+            + "3. 退出并重新打开 Tatemoni。"
         let tf = NSTextField(wrappingLabelWithString: body)
         tf.font = NSFont.systemFont(ofSize: 15)
         tf.preferredMaxLayoutWidth = 460
         tf.setFrameSize(NSSize(width: 460, height: 10))
         tf.sizeToFit()
         a.accessoryView = tf
-        a.addButton(withTitle: "システム設定を開く")
-        a.addButton(withTitle: "あとで")
+        a.addButton(withTitle: "打开系统设置")
+        a.addButton(withTitle: "稍后")
         NSApp.activate(ignoringOtherApps: true)
         if a.runModal() == .alertFirstButtonReturn {
             if let u = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_ScreenCapture") {
@@ -600,36 +589,17 @@ final class Controller: NSObject, NSApplicationDelegate {
     //   文は普通に書いて、行間と段落の間隔で読みやすくする。
     //   （手で改行を入れると、窓の幅を変えたときに変な所で切れる）
     let guideText = """
-    ★ 表示がおかしくなるのを防ぐ
-    iPad は【横向き】で 回転ロック してください
-    【縦向き】でロックすると 画面表示がおかしくなります
-    ここだけは 面倒ですが 必ずお願いします
-    ── 使う順番 ──
-    1.  iPad を 横向き に持つ
-    2.  画面の右上から 下へスワイプ
-    3.  回転ロック 設定 オン にする
-    4.  Sidecar でつなぐ
-    5.  iPad を 使いたい向きに置く
-    6.  メニューから 画像の向き を選ぶ
-    7.  メニューから マウスの矢印が入ってくる辺 を選ぶ
-    ── 知っておいて ──
-    ● iPad を 直接 触っても効きません
-    縦表示の間は タッチ操作 も ペン も効きません
-    マウスで操作してください。
-    ● Mac のディスプレイ設定について
-    システム ディスプレイ設定に 画面が1枚 増えます
-    全部で3つに見えます　縦表示時の 仮想モニターです
-    「横（そのまま）」に戻せば 消えます。
-    ● サイドバー・Touch Bar
-    表示 / 非表示は システム ディスプレイ設定で変更
-    ● 他の「拡張ディスプレイ」アプリと 一緒に使うとき
-    DisplayLink など 他の拡張ディスプレイアプリと 同時に使うと
-    正しく表示されないことがあります
-    （モニターの接続台数が多いときに 起こりやすいです）
-    うまく表示されないときは
-    ・モニターや iPad を つなぐ順番
-    ・アプリを 起動する順番
-    を 入れ替えて 試してみてください
+    ★ 先横放 iPad，再锁定屏幕方向
+    ── 连接步骤 ──
+    1. 横放 iPad，从屏幕右上角下滑打开控制中心。
+    2. 开启方向锁定，用随航把 iPad 连接到 Mac。
+    3. 竖起 iPad，在菜单栏选择与 Home 键位置一致的竖屏方向。
+    4. 在菜单中设置鼠标从哪一侧进入 iPad。
+    ── 使用提示 ──
+    ● 竖屏时请使用鼠标或触控板。此模式下触屏和 Apple Pencil 无法操作 Mac。
+    ● Mac 的显示器设置会多出一块虚拟竖屏。切回「横屏（普通随航）」即可恢复。
+    ● 可在 Mac 的显示器设置中隐藏随航边栏和触控栏。
+    ● 和 DisplayLink 等扩展显示软件同时使用时，可能出现显示异常。可以试着调整设备连接或应用启动的先后顺序。
     """
 
     /// 使い方の文を 読みやすい形に組み立てる。
@@ -682,7 +652,7 @@ final class Controller: NSObject, NSApplicationDelegate {
         // ★バージョンは 窓のタイトルバーに出す（親分の指示 2026-08-13）。
         //   本文の中に帯を作ると、そのぶん本文が下に押されて
         //   最後の行がスクロールしないと見えなくなる。だからタイトルへ。
-        w.title = "たてモニ の使い方　\(APP_VERSION)"
+        w.title = "Tatemoni 使用说明 · \(APP_VERSION)"
         w.isReleasedWhenClosed = false
 
         let scroll = NSScrollView(frame: NSRect(origin: .zero, size: size))
